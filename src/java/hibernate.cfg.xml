@@ -5,7 +5,8 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tienda?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.username">rober</property>
+    <property name="hibernate.connection.password">pass</property>
     <mapping resource="hibernate/Categoria.hbm.xml"/>
     <mapping resource="hibernate/Pedido.hbm.xml"/>
     <mapping resource="hibernate/Producto.hbm.xml"/>
