@@ -1,0 +1,69 @@
+create database tienda default character set utf8 collate utf8_unicode_ci;
+
+create table categoria(
+  id int not null auto_increment primary key,
+  nombre varchar(40) not null unique
+) engine = innodb;
+
+create table producto(
+  id int not null auto_increment primary key,
+  id_categoria int not null,
+  titulo varchar(40) not null,
+  descripcion varchar(200),
+  precio decimal(10,2) not null,
+  stock int,
+  imagen varchar(20),
+  foreign key (id_categoria) references categoria(id)
+) engine = innodb;
+
+create table pedido(
+  id int not null auto_increment primary key,
+  fecha timestamp not null
+) engine = innodb;
+
+create table lineapedido(
+  id int not null auto_increment primary key,
+  id_pedido int not null,
+  id_producto int not null,
+  cantidad int default 1,
+  foreign key (id_pedido) references pedido(id),
+  foreign key (id_producto) references producto(id)
+) engine = innodb;
+
+create table login(
+  usuario varchar(20) not null primary key,
+  clave varchar(20) not null
+) engine = innodb;
+
+insert into login
+values
+('admin', 'admin');
+
+<------------------ Datos de prueba ------------------>
+
+insert into categoria(nombre)
+values
+('categoria1'),
+('categoria2'),
+('categoria3');
+
+insert into producto(id_categoria, titulo, descripcion, precio, stock, imagen)
+values
+(1, 'producto1', 'descripcion1', 10.50, 1, 'imagen_1.jpg'),
+(1, 'producto2', 'descripcion2', 20.50, 2, 'imagen_2.jpg'),
+(2, 'producto3', 'descripcion3', 30.50, 3, 'imagen_3.jpg'),
+(2, 'producto4', 'descripcion4', 40.50, 4, 'imagen_4.jpg'),
+(3, 'producto5', 'descripcion5', 50.50, 5, 'imagen_5.jpg'),
+(3, 'producto6', 'descripcion6', 60.50, 6, 'imagen_6.jpg');
+
+insert into pedido
+values
+(),
+();
+
+insert into lineapedido(id_pedido, id_producto, cantidad)
+values
+(1, 1, 10),
+(1, 2, 20),
+(2, 3, 30),
+(2, 4, 40);
