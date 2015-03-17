@@ -1,5 +1,5 @@
 package hibernate;
-// Generated 16-mar-2015 11:20:10 by Hibernate Tools 4.3.1
+// Generated 17-mar-2015 10:55:46 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,6 +14,11 @@ public class Pedido  implements java.io.Serializable {
 
      private Integer id;
      private Date fecha;
+     private String nombre;
+     private String apellidos;
+     private String direccion;
+     private String telefono;
+     private Integer estado;
      private Set lineapedidos = new HashSet(0);
 
     public Pedido() {
@@ -23,8 +28,13 @@ public class Pedido  implements java.io.Serializable {
     public Pedido(Date fecha) {
         this.fecha = fecha;
     }
-    public Pedido(Date fecha, Set lineapedidos) {
+    public Pedido(Date fecha, String nombre, String apellidos, String direccion, String telefono, Integer estado, Set lineapedidos) {
        this.fecha = fecha;
+       this.nombre = nombre;
+       this.apellidos = apellidos;
+       this.direccion = direccion;
+       this.telefono = telefono;
+       this.estado = estado;
        this.lineapedidos = lineapedidos;
     }
    
@@ -41,6 +51,41 @@ public class Pedido  implements java.io.Serializable {
     
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    public String getNombre() {
+        return this.nombre;
+    }
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getApellidos() {
+        return this.apellidos;
+    }
+    
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+    public String getDireccion() {
+        return this.direccion;
+    }
+    
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    public String getTelefono() {
+        return this.telefono;
+    }
+    
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    public Integer getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
     public Set getLineapedidos() {
         return this.lineapedidos;

@@ -18,7 +18,12 @@ create table producto(
 
 create table pedido(
   id int not null auto_increment primary key,
-  fecha timestamp not null
+  fecha timestamp not null,
+  nombre varchar(20),
+  apellidos varchar(40),
+  direccion varchar(40),
+  telefono varchar(9),
+  estado int default 0
 ) engine = innodb;
 
 create table lineapedido(
@@ -56,10 +61,10 @@ values
 (3, 'producto5', 'descripcion5', 50.50, 5, 'imagen_5.jpg'),
 (3, 'producto6', 'descripcion6', 60.50, 6, 'imagen_6.jpg');
 
-insert into pedido
+insert into pedido(nombre, apellidos, direccion, telefono)
 values
-(),
-();
+('Pepito', 'Perez', 'C/ Primavera 24', '623451232'),
+('Juanito', 'Gutierrez', 'C/ Otoño 26', '958123456');
 
 insert into lineapedido(id_pedido, id_producto, cantidad)
 values
