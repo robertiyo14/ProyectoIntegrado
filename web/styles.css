@@ -1,2 +1,31 @@
 @import url('bootstrap/css/bootstrap.css');
 @import url('bootstrap/css/bootstrap-responsive.css');
+
+body > div > div{
+    margin-top: 100px;
+}
+
+.navbar-default{
+    background-color: rgb(204, 0, 0);
+}
+
+#navbar > ul > li.active > a{
+    background-color: #FF0000;
+    color: #ffffff;
+}
+
+#navbar > ul > li > a{
+    color: #FFFFFF;
+}
+
+#navbar > ul:nth-child(1) > li.dropdown.open > a{
+    background-color: #de0000;
+}
+
+.navbar-brand{
+    width: 200px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(resources/logo.png);
+}
