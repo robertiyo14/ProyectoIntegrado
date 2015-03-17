@@ -1,6 +1,11 @@
 package hibernate;
 // Generated 17-mar-2015 10:55:46 by Hibernate Tools 4.3.1
 
+import modelos.ModeloPedido;
+import modelos.ModeloProducto;
+import org.json.JSONObject;
+
+
 
 
 /**
@@ -26,6 +31,12 @@ public class Lineapedido  implements java.io.Serializable {
        this.pedido = pedido;
        this.producto = producto;
        this.cantidad = cantidad;
+    }
+    
+    public Lineapedido(JSONObject object){
+       this.pedido = ModeloPedido.get(object.getString("id_pedido"));
+       this.producto = ModeloProducto.get(object.getString("id_producto"));
+       this.cantidad = object.getInt("cantidad");
     }
    
     public Integer getId() {

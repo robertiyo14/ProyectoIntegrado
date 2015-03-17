@@ -5,7 +5,10 @@
  */
 package Controlador;
 
+import hibernate.Categoria;
+import hibernate.Producto;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -13,7 +16,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelos.ModeloCategoria;
 import modelos.ModeloProducto;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 @WebServlet(name = "ControladorAndroid", urlPatterns = {"/controlandroid"})
 public class ControladorAndroid extends HttpServlet {
@@ -21,25 +27,25 @@ public class ControladorAndroid extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String destino = "index.html";
-        boolean forward = false;
-        String target, op, action;
-        target = request.getParameter("target");
-        op = request.getParameter("op");
-        action = request.getParameter("action");
+        String action = request.getParameter("action");
+        response.setContentType("application/json;charset=UTF-8");
+        JSONArray lista = new JSONArray();
         
-        //Ir a página donde muestra todos los productos.
-        if (target.equals("producto")
-                && op.equals("select")
-                && action.equals("view")) {
-            forward = true;
-            destino = "WEB-INF/productos.jsp";
-            request.setAttribute("datos", ModeloProducto.get());
+        //ACCIONES
+        if (action.equals("productos")) {
+            List<Producto> productos = ModeloProducto.get();
+            for(Producto p: productos){
+                lista.put(p.getJSON());
+            }
+        } else if(action.equals("categorias")){
+            List<Categoria> categorias = ModeloCategoria.get();
+            for(Categoria c: categorias){
+                lista.put(c.getJSON());
+            }
         }
-        if (forward) {
-            request.getRequestDispatcher(destino).forward(request, response);
-        } else {
-            response.sendRedirect(destino);
+        
+        try (PrintWriter out = response.getWriter()) {
+            out.print(lista.toString());
         }
 
     }
