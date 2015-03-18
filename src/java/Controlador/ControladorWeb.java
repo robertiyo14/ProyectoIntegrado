@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import hibernate.Producto;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelos.ModeloCategoria;
 import modelos.ModeloProducto;
 
 @WebServlet(name = "Controlador", urlPatterns = {"/controlWeb"})
@@ -28,6 +30,8 @@ public class ControladorWeb extends HttpServlet {
         op = request.getParameter("op");
         action = request.getParameter("action");
         
+        System.out.println("target = "+target +"\n op = "+op+"\n action = "+action);
+        
         //Ir a página donde muestra todos los productos.
         if (target.equals("producto")
                 && op.equals("select")
@@ -35,6 +39,23 @@ public class ControladorWeb extends HttpServlet {
             forward = true;
             destino = "WEB-INF/productos.jsp";
             request.setAttribute("datos", ModeloProducto.get());
+        }
+        //Añadir stock a los productos
+        else if(target.equals("producto")
+                && op.equals("edit")
+                && action.equals("op")){
+            forward = false;
+            destino = "controlWeb?target=producto&op=select&action=view";
+            Producto p = new Producto();
+            int stock = Integer.parseInt(request.getParameter("stock"))+Integer.parseInt(request.getParameter("stockNuevo"));
+            p.setId(Integer.parseInt(request.getParameter("id")));
+            p.setCategoria(ModeloCategoria.get(request.getParameter("categoria")));
+            p.setTitulo(request.getParameter("titulo"));
+            p.setDescripcion(request.getParameter("descripcion"));
+            p.setPrecio(BigDecimal.valueOf(Double.parseDouble(request.getParameter("precio"))));
+            p.setStock(stock);
+            p.setImagen(request.getParameter("imagen"));
+            ModeloProducto.edit(p);
         }
         if (forward) {
             request.getRequestDispatcher(destino).forward(request, response);
