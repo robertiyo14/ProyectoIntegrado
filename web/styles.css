@@ -46,3 +46,67 @@ body > div > div > table > tbody > tr > td > img{
 body > div > div > table > tbody > tr > td > a > span{
     color: #cc0000;
 }
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.login{
+    background-color: #cc0000;
+    color: #cccccc;
+}
+
+#inputEmail,#inputPassword{
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.form-control:focus{
+    border: none;
+    webkit-box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.075), 0 0 8px rgba(255, 255, 255, 1);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.075), 0 0 8px rgba(255, 255, 255, 1);
+}
+
+.login > div > form > button{
+    color: #000;
+    background-color: #cccccc;
+    border-color: #000000;
+}
+
+.login > div > form > button:hover{
+    color: #000;
+    background-color: #fff;
+    border-color: #000000;
+}
+
