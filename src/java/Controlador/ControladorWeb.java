@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import hibernate.Login;
 import hibernate.Producto;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelos.ModeloCategoria;
+import modelos.ModeloLogin;
 import modelos.ModeloProducto;
 
 @WebServlet(name = "Controlador", urlPatterns = {"/controlWeb"})
@@ -56,6 +58,27 @@ public class ControladorWeb extends HttpServlet {
             p.setStock(stock);
             p.setImagen(request.getParameter("imagen"));
             ModeloProducto.edit(p);
+        }
+        //Logear
+        else if(target.equals("login")
+                && op.equals("select")
+                && action.equals("logear")){
+            boolean logeado = false;
+            String user = request.getParameter("user");
+            String clave = request.getParameter("pass");
+            List<Login> usuarios = ModeloLogin.get();
+            for(Login l : usuarios){
+                if(l.getUsuario().equals(user) && l.getClave().equals(clave)){
+                    logeado = true;
+                    break;
+                }
+            }
+            if(logeado){
+                destino = "WEB-INF/index.jsp";
+            }else{
+                destino = "index.html";
+            }
+            forward = true;
         }
         if (forward) {
             request.getRequestDispatcher(destino).forward(request, response);

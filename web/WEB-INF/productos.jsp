@@ -97,7 +97,7 @@
                             <td><%= p.getStock()%></td>
                             <td>
                                 <form action="controlWeb" method="POST">
-                                    <input type="text" name="stockNuevo" class="anadirStock"/>
+                                    <input type="text" name="stockNuevo" required class="anadirStock"/>
                                     <input type="hidden" name="target" value="producto" />
                                     <input type="hidden" name="op" value="edit" />
                                     <input type="hidden" name="action" value="op" />
