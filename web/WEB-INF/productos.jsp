@@ -33,38 +33,38 @@
     <body>
 
         <!-- Fixed navbar -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"></a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Insertar <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Categorías</a></li>
-                                <li><a href="#">Productos</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="controlWeb?target=producto&op=select&action=view">Productos</a></li>
-                        <li><a href="#contact">Pedidos</a></li>
-
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="../navbar/">Usuarios</a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </nav>
-
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="controlWeb"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="controlWeb">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Insertar <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="controlWeb?target=categoria&op=insert&action=view">Categorías</a></li>
+                <li><a href="controlWeb?target=producto&op=insert&action=view">Productos</a></li>
+              </ul>
+            </li>
+            <li class="active"><a href="controlWeb?target=producto&op=select&action=view">Productos</a></li>
+            <li><a href="controlWeb?target=pedido&op=select&action=view">Pedidos</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="">Usuarios</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+        <!-- CONTENIDO -->
         <div class="container">
 
             <!-- Main component for a primary marketing message or call to action -->
@@ -101,13 +101,13 @@
                                     <input type="hidden" name="target" value="producto" />
                                     <input type="hidden" name="op" value="edit" />
                                     <input type="hidden" name="action" value="op" />
-                                    <input type="hidden" name="id" value="<%= p.getId() %>" />
-                                    <input type="hidden" name="imagen" value="<%= p.getImagen() %>" />
-                                    <input type="hidden" name="categoria" value="<%= c.getId() %>" />
-                                    <input type="hidden" name="precio" value="<%= p.getPrecio() %>" />
-                                    <input type="hidden" name="titulo" value="<%= p.getTitulo() %>" />
-                                    <input type="hidden" name="descripcion" value="<%= p.getDescripcion() %>" />
-                                    <input type="hidden" name="stock" value="<%= p.getStock() %>" />
+                                    <input type="hidden" name="id" value="<%= p.getId()%>" />
+                                    <input type="hidden" name="imagen" value="<%= p.getImagen()%>" />
+                                    <input type="hidden" name="categoria" value="<%= c.getId()%>" />
+                                    <input type="hidden" name="precio" value="<%= p.getPrecio()%>" />
+                                    <input type="hidden" name="titulo" value="<%= p.getTitulo()%>" />
+                                    <input type="hidden" name="descripcion" value="<%= p.getDescripcion()%>" />
+                                    <input type="hidden" name="stock" value="<%= p.getStock()%>" />
                                     <button type="submit">
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     </button>
@@ -125,12 +125,12 @@
 
 
         <!-- Bootstrap core JavaScript
-        ================================================== -->
+   ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="../../dist/js/bootstrap.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="bootstrap//js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>
 

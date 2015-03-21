@@ -37,24 +37,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="controlWeb?target=producto&op=select&action=view"></a>
+          <a class="navbar-brand" href="controlWeb"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="controlWeb">Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Insertar <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Categorías</a></li>
-                <li><a href="#">Productos</a></li>
+                <li><a href="controlWeb?target=categoria&op=insert&action=view">Categorías</a></li>
+                <li><a href="controlWeb?target=producto&op=insert&action=view">Productos</a></li>
               </ul>
             </li>
             <li><a href="controlWeb?target=producto&op=select&action=view">Productos</a></li>
-            <li><a href="#contact">Pedidos</a></li>
+            <li><a href="controlWeb?target=pedido&op=select&action=view">Pedidos</a></li>
             
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Usuarios</a></li>
+            <li><a href="">Usuarios</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

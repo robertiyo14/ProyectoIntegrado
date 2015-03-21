@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import hibernate.Categoria;
 import hibernate.Login;
 import hibernate.Producto;
 import java.io.IOException;
@@ -34,8 +35,13 @@ public class ControladorWeb extends HttpServlet {
         
         System.out.println("target = "+target +"\n op = "+op+"\n action = "+action);
         
+        if(target==null && op == null && action == null){
+            forward = true;
+            destino = "WEB-INF/index.jsp";
+        }
+        
         //Ir a página donde muestra todos los productos.
-        if (target.equals("producto")
+        else if (target.equals("producto")
                 && op.equals("select")
                 && action.equals("view")) {
             forward = true;
@@ -80,6 +86,38 @@ public class ControladorWeb extends HttpServlet {
             }
             forward = true;
         }
+        //Ver las categorías y el formulario de insertar.
+        else if(target.equals("categoria")
+                && op.equals("insert")
+                && action.equals("view")){
+            request.setAttribute("datos", ModeloCategoria.get());
+            forward = true;
+            destino = "WEB-INF/categorias.jsp";
+        }
+        //Añadir categoría nueva.
+        else if(target.equals("categoria")
+                && op.equals("insert")
+                && action.equals("op")){
+            String nombre = request.getParameter("nombre");
+            Categoria c = new Categoria();
+            c.setNombre(nombre);
+            ModeloCategoria.insert(c);
+            forward = false;
+            destino = "controlWeb?target=categoria&op=insert&action=view";
+        }
+        //Ver el formulario de insertar productos.
+        else if(target.equals("producto")
+                && op.equals("insert")
+                && action.equals("view")){
+            request.setAttribute("datos", ModeloCategoria.get());
+            forward = true;
+            destino = "WEB-INF/addProductos.jsp";
+        }
+        
+        
+        
+        
+        //Despues de todo
         if (forward) {
             request.getRequestDispatcher(destino).forward(request, response);
         } else {
