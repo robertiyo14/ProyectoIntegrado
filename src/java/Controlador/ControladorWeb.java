@@ -113,6 +113,24 @@ public class ControladorWeb extends HttpServlet {
             forward = true;
             destino = "WEB-INF/addProductos.jsp";
         }
+        //Insertar productos
+        else if(target.equals("producto")
+                && op.equals("insert")
+                && action.equals("op")){
+            forward = false;
+            destino = "controlWeb?target=producto&op=select&action=view";
+            String titulo = request.getParameter("titulo");
+            String descripcion = request.getParameter("descripcion");
+            BigDecimal precio = BigDecimal.valueOf(Double.parseDouble(request.getParameter("precio")));
+            int stock = Integer.parseInt(request.getParameter("stock"));
+            Categoria c = ModeloCategoria.getPorNombre(titulo);
+            Producto p = new Producto();
+            p.setTitulo(titulo);
+            p.setDescripcion(descripcion);
+            p.setPrecio(precio);
+            p.setStock(stock);
+            p.setCategoria(c);
+        }
         
         
         

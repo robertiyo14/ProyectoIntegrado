@@ -100,6 +100,10 @@ body > div > div > table > tbody > tr > td > a > span{
     border-color: #000000;
 }
 
+.jumbotron{
+    background-color: #cc0000;
+}
+
 .login > div > form > button:hover{
     color: #000;
     background-color: #fff;
@@ -110,5 +114,14 @@ body > div > div > table > tbody > tr > td > a > span{
     color: #000;
     background-color: #fff;
     border-color: #000000;
+}
+
+.input-group{
+    margin: 5px 0;
+    width: 50%;
+}
+
+.input-group-addon{
+    width: 100px;
 }
 

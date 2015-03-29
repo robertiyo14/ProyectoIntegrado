@@ -69,29 +69,40 @@
             <div class="jumbotron"> 
                 <h3>Insertar nuevo producto</h3>
                 <form action="controlWeb" method="POST" enctype="multipart/form-data">
-                    <label>Título</label>
-                    <input type="text" name="titulo" required/>
-                    <label>Descripción</label>
-                    <textarea name="descripcion" required></textarea>
-                    <label>Precio</label>
-                    <input type="number" name="precio" required/>
-                    <label>Stock</label>
-                    <input type="number" name="stock" required/>
-                    <label>Imagen</label>
-                    <input type="file" name="foto" />
-                    <label>Categoría</label>
-                    <select name="categoria">
+                    <div class="input-group">
+                        <span class="input-group-addon">Título</span>
+                        <input class="form-control" type="text" name="titulo" required/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Descripción</span>
+                        <textarea class="form-control" name="descripcion" required></textarea>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Precio</span>
+                        <input class="form-control bfh-number" type="number" name="precio" required/>
+                    </div>
+                    <div class="input-group">                        
+                        <span class="input-group-addon">Stock</span>
+                        <input class="form-control" type="number" name="stock" required/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Imagen</span>
+                        <input class="form-control" type="file" name="foto" />
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Categoría</span>
+                        <select class="form-control" name="categoria">
                         <% 
                             List<Categoria> listaCategorias = (List<Categoria>) request.getAttribute("datos");
                             for (Categoria c : listaCategorias) {
                         %>
-                        <option><%= c.getNombre() %></option>
+                        <option class="form-control"><%= c.getNombre() %></option>
                         <%
                             }
                         %>
-                    </select>
-
-                    <input type="hidden" name="target" value="categoria" />
+                        </select>
+                    </div>
+                    <input type="hidden" name="target" value="producto" />
                     <input type="hidden" name="op" value="insert" />
                     <input type="hidden" name="action" value="op" />
                     <button type="submit">Insertar</button>

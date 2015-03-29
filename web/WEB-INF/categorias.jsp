@@ -68,16 +68,21 @@
         <div class="container">
 
             <!-- Main component for a primary marketing message or call to action -->
-            <div class="jumbotron">                
+            <div class="jumbotron">    
+                <h3>Insertar nueva categoría</h3>
                 <form action="controlWeb" method="POST">
-                        <label>Nombre de la categoría</label>
-                        <input type="text" name="nombre" required/>
+                    <div class="input-group">
+                        <span class="input-group-addon">Nombre</span>
+                        <input class="form-control" type="text" name="nombre" required/>
+                        <span class="input-group-btn">
+                            <button class="btn" type="submit">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div>
                         <input type="hidden" name="target" value="categoria" />
                         <input type="hidden" name="op" value="insert" />
                         <input type="hidden" name="action" value="op" />
-                        <button type="submit">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </button>
                     </form>
             </div>
             <div class="panel panel-default">
