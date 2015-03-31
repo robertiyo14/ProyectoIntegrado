@@ -119,17 +119,31 @@ public class ControladorWeb extends HttpServlet {
                 && action.equals("op")){
             forward = false;
             destino = "controlWeb?target=producto&op=select&action=view";
+            String categoria = request.getParameter("categoria");
+            System.out.println("Categoria: " + categoria + "\n");
             String titulo = request.getParameter("titulo");
+            System.out.println("Titulo:" + titulo + "\n");
             String descripcion = request.getParameter("descripcion");
+            System.out.println("Desc: " + descripcion + "\n");
             BigDecimal precio = BigDecimal.valueOf(Double.parseDouble(request.getParameter("precio")));
+            System.out.println("Precio: " + precio + "\n");
             int stock = Integer.parseInt(request.getParameter("stock"));
-            Categoria c = ModeloCategoria.get().get(0);
+            System.out.println("Stock: " + stock + "\n");
+            List <Categoria> categorias = ModeloCategoria.get();
+            System.out.println("Numero de categorias: " + categorias.size() + "\n");
             Producto p = new Producto();
             p.setTitulo(titulo);
             p.setDescripcion(descripcion);
             p.setPrecio(precio);
             p.setStock(stock);
-            p.setCategoria(c);
+            for(Categoria cat : categorias){
+                System.out.println("Categoria: " + cat.getNombre() + "\n");
+                if(cat.getNombre().equals(categoria)){
+                    p.setCategoria(cat);
+                    System.out.println("PONGO LA CATEGORIA: " + cat.getNombre() + "\n");
+                    break;
+                }
+            }
             ModeloProducto.insert(p);
         }
         //Eliminar productos
