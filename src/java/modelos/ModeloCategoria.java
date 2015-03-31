@@ -40,19 +40,6 @@ public class ModeloCategoria {
         return c;
     }
     
-    public static Categoria getPorNombre(String nombre){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-
-        Categoria c = (Categoria) session.get(Categoria.class, nombre);
-
-        session.getTransaction().commit();
-        
-        session.close();
-        
-        return c;
-    }
-    
     public static void delete(String id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

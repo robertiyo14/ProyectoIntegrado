@@ -123,15 +123,23 @@ public class ControladorWeb extends HttpServlet {
             String descripcion = request.getParameter("descripcion");
             BigDecimal precio = BigDecimal.valueOf(Double.parseDouble(request.getParameter("precio")));
             int stock = Integer.parseInt(request.getParameter("stock"));
-            Categoria c = ModeloCategoria.getPorNombre(titulo);
+            Categoria c = ModeloCategoria.get().get(0);
             Producto p = new Producto();
             p.setTitulo(titulo);
             p.setDescripcion(descripcion);
             p.setPrecio(precio);
             p.setStock(stock);
             p.setCategoria(c);
+            ModeloProducto.insert(p);
         }
-        
+        //Eliminar productos
+        else if(target.equals("producto")
+                && op.equals("delete")
+                && action.equals("op")){
+            forward = false;
+            destino = "controlWeb?target=producto&op=select&action=view";
+            ModeloProducto.delete(request.getParameter("id"));
+        }
         
         
         

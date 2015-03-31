@@ -68,7 +68,7 @@
             <!-- Main component for a primary marketing message or call to action -->
             <div class="jumbotron"> 
                 <h3>Insertar nuevo producto</h3>
-                <form action="controlWeb" method="POST" enctype="multipart/form-data">
+                <form action="controlWeb" method="POST">
                     <div class="input-group">
                         <span class="input-group-addon">Título</span>
                         <input class="form-control" type="text" name="titulo" required/>
@@ -102,10 +102,10 @@
                         %>
                         </select>
                     </div>
+                    <button type="submit">Insertar</button>
                     <input type="hidden" name="target" value="producto" />
                     <input type="hidden" name="op" value="insert" />
                     <input type="hidden" name="action" value="op" />
-                    <button type="submit">Insertar</button>
                 </form>
             </div>
         </div> <!-- /container -->

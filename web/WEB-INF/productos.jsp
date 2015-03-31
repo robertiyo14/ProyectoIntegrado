@@ -33,37 +33,37 @@
     <body>
 
         <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="controlWeb"></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="controlWeb">Home</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Insertar <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="controlWeb?target=categoria&op=insert&action=view">Categorías</a></li>
-                <li><a href="controlWeb?target=producto&op=insert&action=view">Productos</a></li>
-              </ul>
-            </li>
-            <li class="active"><a href="controlWeb?target=producto&op=select&action=view">Productos</a></li>
-            <li><a href="controlWeb?target=pedido&op=select&action=view">Pedidos</a></li>
-            
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="">Usuarios</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="controlWeb"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="controlWeb">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Insertar <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="controlWeb?target=categoria&op=insert&action=view">Categorías</a></li>
+                                <li><a href="controlWeb?target=producto&op=insert&action=view">Productos</a></li>
+                            </ul>
+                        </li>
+                        <li class="active"><a href="controlWeb?target=producto&op=select&action=view">Productos</a></li>
+                        <li><a href="controlWeb?target=pedido&op=select&action=view">Pedidos</a></li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="">Usuarios</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
         <!-- CONTENIDO -->
         <div class="container">
 
@@ -80,6 +80,8 @@
                             <th>Precio</th>
                             <th>Stock</th>
                             <th>Añadir stock</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -97,7 +99,7 @@
                             <td><%= p.getStock()%></td>
                             <td>
                                 <form action="controlWeb" method="POST">
-                                    <input type="text" name="stockNuevo" required class="anadirStock"/>
+                                    <input class="anadirStock" type="number" name="stockNuevo" required/>
                                     <input type="hidden" name="target" value="producto" />
                                     <input type="hidden" name="op" value="edit" />
                                     <input type="hidden" name="action" value="op" />
@@ -110,6 +112,28 @@
                                     <input type="hidden" name="stock" value="<%= p.getStock()%>" />
                                     <button type="submit">
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="controlWeb" method="POST">
+                                    <input type="hidden" name="target" value="producto" />
+                                    <input type="hidden" name="op" value="edit" />
+                                    <input type="hidden" name="action" value="view" />
+                                    <input type="hidden" name="id" value="<%= p.getId()%>" />
+                                    <button type="submit">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="controlWeb" method="POST">
+                                    <input type="hidden" name="target" value="producto" />
+                                    <input type="hidden" name="op" value="delete" />
+                                    <input type="hidden" name="action" value="op" />
+                                    <input type="hidden" name="id" value="<%= p.getId()%>" />
+                                    <button type="submit">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     </button>
                                 </form>
                             </td>
