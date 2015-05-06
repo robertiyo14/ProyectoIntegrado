@@ -8,19 +8,26 @@ package Controlador;
 import hibernate.Categoria;
 import hibernate.Login;
 import hibernate.Producto;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import modelos.ModeloCategoria;
 import modelos.ModeloLogin;
 import modelos.ModeloProducto;
 
 @WebServlet(name = "Controlador", urlPatterns = {"/controlWeb"})
+@MultipartConfig
 public class ControladorWeb extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -144,6 +151,30 @@ public class ControladorWeb extends HttpServlet {
                     break;
                 }
             }
+            
+            //FOTO
+            Part filePart = request.getPart("foto"); 
+            InputStream fileContent = filePart.getInputStream();
+            //String fecha = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String fileName = titulo+".jpg";
+            response.setContentType("application/json;charset=UTF-8");
+            try {
+                System.out.println("aaaaaaaaaaaa estoy en el try");
+                FileOutputStream fos = new FileOutputStream( getServletContext().getRealPath("/") +"images/"+ fileName);
+                System.out.println("aaaaaaaaaaaa " + fileName);
+                byte[] array = new byte[1000]; // buffer temporal de lectura.
+                int leido = fileContent.read(array);
+                while (leido > 0) {
+                    fos.write(array, 0, leido);
+                    leido = fileContent.read(array);
+                }
+                // cierre de conexion y fichero.
+                fileContent.close();
+                fos.close();
+            } catch (Exception e) {
+                System.out.println("AAAAAAAAAAAAAAAAAA: "+e.toString());
+            }
+            p.setImagen(fileName);
             ModeloProducto.insert(p);
         }
         //Eliminar productos

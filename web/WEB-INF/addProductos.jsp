@@ -68,7 +68,7 @@
             <!-- Main component for a primary marketing message or call to action -->
             <div class="jumbotron"> 
                 <h3>Insertar nuevo producto</h3>
-                <form action="controlWeb" method="POST">
+                <form action="controlWeb" method="post" enctype="multipart/form-data">
                     <div class="input-group">
                         <span class="input-group-addon">Título</span>
                         <input class="form-control" type="text" name="titulo" required/>
