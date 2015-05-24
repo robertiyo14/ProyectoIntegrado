@@ -7,14 +7,19 @@ package Controlador;
 
 import hibernate.Categoria;
 import hibernate.Login;
+import hibernate.Pedido;
 import hibernate.Producto;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +28,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import modelos.ModeloCategoria;
+import modelos.ModeloLineaPedido;
 import modelos.ModeloLogin;
+import modelos.ModeloPedido;
 import modelos.ModeloProducto;
 
 @WebServlet(name = "Controlador", urlPatterns = {"/controlWeb"})
@@ -185,7 +192,48 @@ public class ControladorWeb extends HttpServlet {
             destino = "controlWeb?target=producto&op=select&action=view";
             ModeloProducto.delete(request.getParameter("id"));
         }
-        
+        //Ver pedidos
+        else if (target.equals("pedido")
+                && op.equals("select")
+                && action.equals("view")) {
+            forward = true;
+            destino = "WEB-INF/pedidos.jsp";
+            request.setAttribute("datos", ModeloPedido.get());
+        }
+        //Entregar pedidos
+        else if (target.equals("pedido")
+                && op.equals("edit")
+                && action.equals("op")) {
+            forward = false;
+            destino = "controlWeb?target=pedido&op=select&action=view";
+            Pedido p = new Pedido();
+            p.setId(Integer.parseInt(request.getParameter("id")));            
+            Date date=null;
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(request.getParameter("fecha"));
+            } catch (ParseException ex) {
+                Logger.getLogger(ControladorWeb.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            p.setFecha(date);
+            System.out.println("FECHA: "+date.toString());
+            //System.out.println(request.getParameter("fecha")+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            p.setNombre(request.getParameter("nombre"));
+            p.setDireccion(request.getParameter("direccion"));
+            p.setApellidos(request.getParameter("apellido"));
+            p.setTelefono(request.getParameter("telefono"));
+            p.setEstado(1);
+            ModeloPedido.edit(p);
+        }
+        //Ver lineas pedido
+        else if (target.equals("linea")
+                && op.equals("select")
+                && action.equals("view")) {
+            forward = true;
+            destino = "WEB-INF/detallePedido.jsp";
+            String id = request.getParameter("id");
+            System.out.println(id);
+            request.setAttribute("datos", ModeloPedido.get(id));
+        }
         
         
         //Despues de todo
