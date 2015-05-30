@@ -34,9 +34,11 @@ public class Lineapedido  implements java.io.Serializable {
     }
     
     public Lineapedido(JSONObject object){
-       this.pedido = ModeloPedido.get(object.getString("id_pedido"));
-       this.producto = ModeloProducto.get(object.getString("id_producto"));
+       this.pedido = ModeloPedido.get(object.getInt("id_pedido")+"");
+       this.producto = ModeloProducto.get(object.getInt("id_producto")+"");
        this.cantidad = object.getInt("cantidad");
+       this.producto.setStock(this.producto.getStock() - this.cantidad);
+       ModeloProducto.edit(producto);
     }
    
     public Integer getId() {
