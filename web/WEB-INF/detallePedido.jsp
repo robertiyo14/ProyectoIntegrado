@@ -4,6 +4,7 @@
     Author     : rober
 --%>
 
+<%@page import="modelos.ModeloPedido"%>
 <%@page import="hibernate.Lineapedido"%>
 <%@page import="modelos.ModeloLineaPedido"%>
 <%@page import="java.util.ArrayList"%>
@@ -71,7 +72,7 @@
         <div class="container">
             <% 
                 //List<Pedido> listaPedidos = (List<Pedido>) request.getAttribute("datos");
-                Pedido p = (Pedido) request.getAttribute("datos");
+                Pedido p = (Pedido) ModeloPedido.get(request.getAttribute("datos")+"");
                 if(p==null){
                     System.out.print("NULO");
                 }else{
@@ -79,9 +80,8 @@
                     System.out.print("nombre: "+p.getNombre());
                 }
             %>
-            <div class="jumbotron">
+            <div class="encabezado">
                 <div class="row">
-                    
                     <div class="col-md-4"><%= p.getNombre() %></div>
                     <div class="col-md-4"><%= p.getDireccion() %></div>
                     <div class="col-md-4"><%= p.getFecha() %></div>
@@ -118,9 +118,10 @@
                         ArrayList lineasPedido = new ArrayList();
                         Producto pro = new Producto();
                         for(Lineapedido lp : ModeloLineaPedido.get()){
+                            Lineapedido linea = ModeloLineaPedido.get(lp.getId()+"");
                             if(lp.getPedido().getId() == p.getId()){ %>
                         <tr>
-                            <% pro = lp.getProducto(); System.out.print("ES IGUAL"); %>
+                            <% pro = ModeloProducto.get(lp.getProducto().getId()+""); System.out.print("ES IGUAL"); %>
                             <td><%= pro.getId() %></td>
                             <td><img src="images/<%= pro.getImagen() %>"/></td>
                             <td><%= pro.getTitulo() %></td>

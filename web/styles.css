@@ -125,4 +125,20 @@ body > div > div > table > tbody > tr > td > a > span{
     width: 100px;
 }
 
+.entregado{
+    background-color: #66FF99;
+}
+
+.noEntregado{
+    background-color: #FF6666; 
+}
+
+.encabezado{
+    background-color: #FF6666;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+}
+
 

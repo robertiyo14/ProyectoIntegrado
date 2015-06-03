@@ -91,7 +91,8 @@
                                     entregado = "Entregado";
                                 }
                         %>
-                        <tr>
+                        <% if(p.getEstado()==0){ %>
+                        <tr class="noEntregado">
                             <td><%= p.getId()%></td>
                             <td><%= p.getFecha()%></td>
                             <td><%= p.getNombre()%></td>
@@ -130,6 +131,46 @@
                                 </td>
                         </tr>
                         <%
+                        }else{%>
+                        <tr class="entregado">
+                            <td><%= p.getId()%></td>
+                            <td><%= p.getFecha()%></td>
+                            <td><%= p.getNombre()%></td>
+                            <td><%= entregado%></td>
+                            <td>
+                                <% if(p.getEstado()==0){ %>
+                                <form action="controlWeb" method="POST">
+                                    <input type="hidden" name="target" value="pedido" />
+                                    <input type="hidden" name="op" value="edit" />
+                                    <input type="hidden" name="action" value="op" />
+                                    <input type="hidden" name="id" value="<%= p.getId()%>" />
+                                    <input type="hidden" name="nombre" value="<%= p.getNombre() %>" />
+                                    <input type="hidden" name="fecha" value="<%= p.getFecha() %>" />
+                                    <input type="hidden" name="apellido" value="<%= p.getApellidos() %>" />
+                                    <input type="hidden" name="direccion" value="<%= p.getDireccion() %>" />
+                                    <input type="hidden" name="telefono" value="<%= p.getTelefono()%>" />
+                                    <input type="hidden" name="estado" value="<%= 1 %>" />
+                                    <button type="submit">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                                <% }else{%>
+                                    
+                                <%}%>
+                                </td>
+                                <td>
+                                    <form action="controlWeb" method="POST">
+                                        <input type="hidden" name="target" value="linea" />
+                                        <input type="hidden" name="op" value="select" />
+                                        <input type="hidden" name="action" value="view" />
+                                        <input type="hidden" name="id" value="<%= p.getId()%>" />
+                                        <button type="submit">
+                                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                        </tr>
+                        <%}
                             }
                         %>
                     </tbody>

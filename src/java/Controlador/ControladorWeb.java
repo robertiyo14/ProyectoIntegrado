@@ -162,8 +162,8 @@ public class ControladorWeb extends HttpServlet {
             //FOTO
             Part filePart = request.getPart("foto"); 
             InputStream fileContent = filePart.getInputStream();
-            //String fecha = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String fileName = titulo+".jpg";
+            String fecha = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String fileName = fecha+".jpg";
             response.setContentType("application/json;charset=UTF-8");
             try {
                 System.out.println("aaaaaaaaaaaa estoy en el try");
@@ -232,7 +232,7 @@ public class ControladorWeb extends HttpServlet {
             destino = "WEB-INF/detallePedido.jsp";
             String id = request.getParameter("id");
             System.out.println(id);
-            request.setAttribute("datos", ModeloPedido.get(id));
+            request.setAttribute("datos", id);
         }
         
         
