@@ -61,11 +61,23 @@
     </nav>
 <!-- CONTENIDO -->
     <div class="container">
-      
+        <div class="principal">
+            
+        <div class="row">
+            <div class="col-md-6">
+                <img src="resources/portada.jpg"/>
+            </div>
+            <div class="col-md-6">
+                <p>Media Markt, nº1 en tiendas de informática y electrónica en España y Europa. Las tiendas Media Markt somos líderes en informática, electrónica, electrodomésticos y otros complementos para el entretenimiento, siempre con las mejores marcas al mejor precio</p>
+                <p style="font-weight: bold">Calle Luis Buñuel, Pulianas, Granada 958899700</p>
+                <p>Si tienes cualquier duda sobre tu compra o consulta sobre nuestras tiendas, puedes contactar con nosotros como prefieras: Llámanos a nuestro teléfono de atención al cliente: 920102573. Horario de lunes a viernes de 9:00 a 22:00 horas; sábados, domingos y festivos de apertura de 9:00 a 20:00 horas.</p>
+            </div>
+        </div>
+        </div>
 
     </div> <!-- /container -->
 
-
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
